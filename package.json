@@ -2,9 +2,15 @@
   "name": "WellinBackendTask",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc --watch & nodemon dist",
+    "seed": "knex --knexfile src/knexfile.ts seed:run",
+    "knex:seed:make": "knex --knexfile src/knexfile.ts seed:make",
+    "knex:migrate:make": "knex --knexfile src/knexfile.ts migrate:make",
+    "knex:migrate:latest": "knex --knexfile src/knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile src/knexfile.ts migrate:rollback"
   },
   "keywords": [],
   "author": "",
