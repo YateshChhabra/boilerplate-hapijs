@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import knex from "./db";
 import Hapi, { Server } from "@hapi/hapi";
+import userRoutes  from "./routes/user";
 
 export let server: Server;
 export const init = async function (): Promise<Server> {
@@ -16,6 +17,8 @@ export const init = async function (): Promise<Server> {
     },
   });
 
+  // Routes
+  server.route(userRoutes);
   return server;
 };
 
