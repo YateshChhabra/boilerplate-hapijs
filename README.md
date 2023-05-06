@@ -10,7 +10,7 @@
 	payload:    username  :  ””
 			    password  :  ”” 
 		
-	Signin users    :  “http://localhost:5000/signup”
+	Signin users    :  “http://localhost:5000/signin”
 	payload:    username  :  ””
 			    password  :  ”” 
 
