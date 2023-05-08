@@ -45,7 +45,7 @@ const init = function () {
     return __awaiter(this, void 0, void 0, function* () {
         exports.server = hapi_1.default.server({
             port: process.env.PORT || 4000,
-            host: "0.0.0.0",
+            host: "localhost",
             routes: {
                 cors: {
                     credentials: true,

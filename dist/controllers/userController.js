@@ -89,6 +89,14 @@ function fetchUserList(request, h) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = request.state.access_token;
+            if (!token) {
+                return h
+                    .response({
+                    message: "You are not Authenticated this page",
+                    status: 400,
+                })
+                    .code(400);
+            }
             const isAuthenticated = (0, jwt_1.validateToken)(token);
             if (isAuthenticated) {
                 const users = yield userRepository.fetchAllUser();
@@ -104,9 +112,9 @@ function fetchUserList(request, h) {
                 return h
                     .response({
                     message: "Token Expired",
-                    status: 400,
+                    status: 401,
                 })
-                    .code(400);
+                    .code(401);
             }
         }
         catch (e) {

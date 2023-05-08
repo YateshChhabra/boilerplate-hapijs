@@ -90,9 +90,7 @@ export async function doSignIn(
 export async function fetchUserList(request: Request, h: ResponseToolkit) {
   try {
     const token = request.state.access_token;
-    const isAuthenticated = validateToken(token);
-    
-    if(!token){
+    if (!token) {
       return h
         .response({
           message: "You are not Authenticated this page",
@@ -100,7 +98,9 @@ export async function fetchUserList(request: Request, h: ResponseToolkit) {
         })
         .code(400);
     }
-    else if (isAuthenticated) {
+
+    const isAuthenticated = validateToken(token);
+    if (isAuthenticated) {
       const users = await userRepository.fetchAllUser();
       return h
         .response({
