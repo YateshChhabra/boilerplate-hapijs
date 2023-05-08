@@ -91,8 +91,16 @@ export async function fetchUserList(request: Request, h: ResponseToolkit) {
   try {
     const token = request.state.access_token;
     const isAuthenticated = validateToken(token);
-
-    if (isAuthenticated) {
+    
+    if(!token){
+      return h
+        .response({
+          message: "You are not Authenticated this page",
+          status: 400,
+        })
+        .code(400);
+    }
+    else if (isAuthenticated) {
       const users = await userRepository.fetchAllUser();
       return h
         .response({
@@ -105,9 +113,9 @@ export async function fetchUserList(request: Request, h: ResponseToolkit) {
       return h
         .response({
           message: "Token Expired",
-          status: 400,
+          status: 401,
         })
-        .code(400);
+        .code(401);
     }
   } catch (e) {
     return h
